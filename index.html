@@ -1,0 +1,3355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGAREO - Find Your Place In UAE</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #333;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: transparent !important;
+            padding: 1.5rem 2rem;
+            box-shadow: none;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            opacity: 1;
+            visibility: visible;
+            backdrop-filter: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
+            border: none;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            justify-content: center;
+        }
+
+        .navbar.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .navbar .container-fluid {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #000 !important;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+            gap: 0.5rem;
+            min-width: auto;
+            flex: 0 0 auto;
+        }
+
+        .navbar-brand-icon {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .navbar-brand-text {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .navbar-nav {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: #333 !important;
+            margin: 0;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0 !important;
+        }
+
+        .nav-link:hover {
+            color: #0066cc !important;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-contact {
+            background-color: transparent;
+            color: #333;
+            border: 1px solid #333;
+            padding: 0.5rem 1.25rem;
+            font-weight: 600;
+            border-radius: 0.375rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-contact:hover {
+            background-color: #000;
+            color: #fff;
+            border-color: #000;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('feature-uae.png') center / cover no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(200, 220, 240, 0.6) 0%, rgba(240, 245, 255, 0.6) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero > .container-fluid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #000;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1.5px;
+            word-spacing: -0.1em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #333;
+            margin-bottom: 1.25rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-tagline {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-primary-custom {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            justify-content: center;
+            min-height: 50px;
+            white-space: nowrap;
+        }
+
+        .btn-primary-custom::after {
+            content: '→';
+            font-size: 1.2rem;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #333;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            color: #fff;
+        }
+
+        /* Responsive Design - Large Desktop (1200px and above) */
+        @media (min-width: 1200px) {
+            .container-fluid {
+                padding-left: 4rem;
+                padding-right: 4rem;
+            }
+        }
+
+        /* Responsive Design - Tablet/Medium Screens (992px to 1199px) */
+        @media (max-width: 1199px) and (min-width: 993px) {
+            .navbar {
+                padding: 1.25rem 1.5rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+
+            .navbar-brand-icon {
+                width: 45px;
+                height: 45px;
+            }
+
+            .navbar-nav {
+                gap: 2rem;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem;
+                min-height: 100vh;
+                background-attachment: fixed;
+            }
+
+            .hero > .container-fluid {
+                height: 100%;
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+                margin-bottom: 1.35rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.15rem;
+                margin-bottom: 1.15rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.05rem;
+                margin-bottom: 2.3rem;
+            }
+
+            .btn-primary-custom {
+                padding: 1rem 2.5rem;
+                font-size: 1.05rem;
+                min-height: 50px;
+            }
+
+            .why-section,
+            .about-section,
+            .simplified-section,
+            .own-section,
+            .testimonials-section,
+            .services-section,
+            .beyond-section,
+            .blog-section,
+            .cta-section {
+                padding: 6rem 1.5rem;
+            }
+
+            footer {
+                padding: 3rem 1.5rem 1.5rem;
+            }
+        }
+
+        /* Responsive Design - Tablet (768px to 992px) */
+        @media (max-width: 992px) {
+            .container-fluid {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .navbar {
+                padding: 1rem 1rem;
+            }
+
+            .navbar-expand-lg .navbar-collapse {
+                justify-content: flex-start;
+            }
+
+            .navbar-brand {
+                font-size: 1.3rem;
+                gap: 0.5rem;
+            }
+
+            .navbar-brand-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .navbar-nav {
+                gap: 1rem;
+                flex-direction: column;
+                margin-top: 1rem;
+            }
+
+            .nav-link {
+                margin: 0;
+                padding: 0.5rem 0 !important;
+            }
+
+            .btn-contact {
+                margin-top: 1rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 5rem 1.5rem;
+                min-height: 100vh;
+                background-attachment: fixed;
+            }
+
+            .hero > .container-fluid {
+                height: 100%;
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.15rem;
+                margin-bottom: 1.1rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.05rem;
+                margin-bottom: 2.25rem;
+            }
+
+            .btn-primary-custom {
+                padding: 0.95rem 2.25rem;
+                font-size: 1.02rem;
+                min-height: 50px;
+            }
+
+            /* All sections padding */
+            .why-section,
+            .about-section,
+            .simplified-section,
+            .own-section,
+            .testimonials-section,
+            .services-section,
+            .beyond-section,
+            .blog-section,
+            .cta-section {
+                padding: 5rem 1rem;
+            }
+
+            .why-container {
+                gap: 2rem;
+            }
+
+            .simplified-left {
+                padding-right: 0;
+            }
+
+            .simplified-right {
+                padding-left: 0;
+            }
+
+            .services-left {
+                padding-right: 0;
+            }
+
+            .services-right {
+                padding-left: 0;
+            }
+
+            .blog-post-content {
+                padding: 0;
+            }
+
+            footer {
+                padding: 3rem 1rem 1.5rem;
+            }
+        }
+
+        /* Responsive Design - Large Mobile/Small Tablet (640px to 767px) */
+        @media (max-width: 767px) {
+            .container-fluid {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+
+            .navbar {
+                padding: 0.75rem 0.75rem;
+            }
+
+            .navbar .container-fluid {
+                padding: 0 0.5rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.2rem;
+                gap: 0.35rem;
+            }
+
+            .navbar-brand-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .navbar-nav {
+                gap: 0.75rem;
+            }
+
+            .hero {
+                padding: 4rem 0.75rem;
+                min-height: 90vh;
+                background-attachment: fixed;
+            }
+
+            .hero > .container-fluid {
+                height: 100%;
+            }
+
+            .hero-title {
+                font-size: 2.25rem;
+                margin-bottom: 1.1rem;
+                line-height: 1.25;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 0.9rem;
+            }
+        }
+            .hero-tagline {
+                font-size: 0.9rem;
+                margin-bottom: 1.75rem;
+            }
+
+            .btn-primary-custom,
+            .btn-search,
+            .btn-contact,
+            .btn-join-agareo,
+            .btn-blog,
+            .btn-cta,
+            .btn-services,
+            .btn-discover {
+                min-height: 44px;
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .why-section,
+            .about-section,
+            .simplified-section,
+            .own-section,
+            .testimonials-section,
+            .services-section,
+            .beyond-section,
+            .blog-section,
+            .cta-section {
+                padding: 3.5rem 0.75rem;
+            }
+
+            .why-label {
+                font-size: 0.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .why-title {
+                font-size: 1.9rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .why-description {
+                font-size: 0.9rem;
+            }
+
+            .about-title {
+                font-size: 1.75rem;
+            }
+
+            .about-image {
+                width: 95%;
+            }
+
+            .simplified-title {
+                font-size: 1.9rem;
+            }
+
+            .simplified-subtitle {
+                font-size: 1.25rem;
+            }
+
+            .steps-item {
+                gap: 1.25rem;
+                margin-bottom: 2rem;
+            }
+
+            .own-title-centered {
+                font-size: 1.9rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .for-agents-image {
+                height: 220px;
+            }
+
+            .own-main-image {
+                height: 260px;
+            }
+
+            .testimonials-title {
+                font-size: 1.75rem;
+                margin-bottom: 2rem;
+            }
+
+            .testimonials-image {
+                height: 280px;
+            }
+
+            .testimonials-content {
+                padding: 1.75rem 1.25rem;
+            }
+
+            .testimonials-text {
+                font-size: 0.95rem;
+            }
+
+            .testimonials-quote {
+                font-size: 2.5rem;
+            }
+
+            .services-benefits {
+                font-size: 2.5rem;
+            }
+
+            .services-main-title {
+                font-size: 0.9rem;
+            }
+
+            .services-item-title {
+                font-size: 1.05rem;
+            }
+
+            .services-item-desc {
+                font-size: 0.85rem;
+            }
+
+            .beyond-title {
+                font-size: 1.9rem;
+            }
+
+            .beyond-description {
+                font-size: 0.95rem;
+            }
+
+            .beyond-card {
+                height: 240px;
+            }
+
+            .blog-title {
+                font-size: 1.9rem;
+            }
+
+            .blog-post-title {
+                font-size: 1.4rem;
+            }
+
+            .blog-post-image {
+                height: 200px;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+
+            footer {
+                padding: 2.5rem 0.75rem 1rem;
+            }
+
+            .footer-logo {
+                font-size: 2.25rem;
+            }
+
+            .footer-logo-bg {
+                width: 100px;
+                height: 100px;
+            }
+        
+
+        /* Responsive Design - Mobile (480px to 639px) */
+        @media (max-width: 639px) {
+            .navbar {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .navbar .container-fluid {
+                padding: 0;
+            }
+
+            .navbar-brand {
+                font-size: 1.1rem;
+                gap: 0.3rem;
+            }
+
+            .navbar-brand-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .navbar-nav {
+                gap: 0.5rem;
+                flex-direction: column;
+            }
+
+            .hero {
+                padding: 3.5rem 0.5rem;
+                min-height: 85vh;
+                background-attachment: fixed;
+            }
+
+            .hero > .container-fluid {
+                height: 100%;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+                margin-bottom: 0.9rem;
+                line-height: 1.2;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .hero-tagline {
+                font-size: 0.85rem;
+                line-height: 1.6;
+                margin-bottom: 1.75rem;
+            }
+
+            .btn-primary-custom {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+                min-height: 44px;
+            }
+
+            .why-section,
+            .about-section,
+            .simplified-section,
+            .own-section,
+            .testimonials-section,
+            .services-section,
+            .beyond-section,
+            .blog-section,
+            .cta-section {
+                padding: 3rem 0.5rem;
+            }
+
+            .why-label {
+                font-size: 0.75rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .why-title {
+                font-size: 1.7rem;
+                margin-bottom: 1rem;
+            }
+
+            .why-description {
+                font-size: 0.85rem;
+                line-height: 1.7;
+            }
+
+            .why-video-container {
+                margin-top: 2rem;
+            }
+
+            .about-title {
+                font-size: 1.6rem;
+                line-height: 1.3;
+            }
+
+            .about-description {
+                padding: 1.5rem 0;
+                margin: 0 auto 1.5rem;
+            }
+
+            .about-image {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .simplified-container {
+                gap: 1.5rem;
+            }
+
+            .simplified-title {
+                font-size: 1.6rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .simplified-subtitle {
+                font-size: 1.15rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .steps-label {
+                font-size: 0.85rem;
+                margin-bottom: 1.75rem;
+            }
+
+            .steps-item {
+                gap: 1rem;
+                margin-bottom: 1.75rem;
+            }
+
+            .steps-item::before {
+                font-size: 0.75rem;
+                min-width: 35px;
+            }
+
+            .steps-item-wrapper {
+                padding-bottom: 1.5rem;
+            }
+
+            .steps-item-title {
+                font-size: 0.95rem;
+            }
+
+            .steps-item-desc {
+                font-size: 0.8rem;
+            }
+
+            .own-wrapper {
+                gap: 1.5rem;
+            }
+
+            .own-title-centered {
+                font-size: 1.6rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .own-left-section {
+                min-height: 300px;
+            }
+
+            .for-agents-title {
+                font-size: 0.85rem;
+                margin-bottom: 2rem;
+            }
+
+            .for-agents-image {
+                height: 200px;
+                margin-top: 4rem;
+            }
+
+            .own-main-image {
+                height: 220px;
+                margin-bottom: 2rem;
+            }
+
+            .own-text-bold {
+                font-size: 0.9rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .own-text-grey {
+                font-size: 0.85rem;
+            }
+
+            .testimonials-section {
+                padding: 3rem 0.5rem;
+            }
+
+            .testimonials-title {
+                font-size: 1.6rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .testimonials-container {
+                gap: 1.5rem;
+            }
+
+            .testimonials-image {
+                height: 250px;
+            }
+
+            .testimonials-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .testimonials-text {
+                font-size: 0.9rem;
+                line-height: 1.7;
+                margin-bottom: 1.5rem;
+            }
+
+            .testimonials-quote {
+                font-size: 2.25rem;
+            }
+
+            .dot {
+                width: 32px;
+                height: 32px;
+                font-size: 0.75rem;
+            }
+
+            .testimonials-author {
+                font-size: 0.8rem;
+            }
+
+            .services-section {
+                padding: 3rem 0.5rem;
+            }
+
+            .services-container {
+                gap: 2rem;
+            }
+
+            .services-left {
+                padding-right: 0;
+            }
+
+            .services-right {
+                padding-left: 0;
+            }
+
+            .services-label {
+                font-size: 0.8rem;
+                margin-bottom: 2rem;
+            }
+
+            .services-item {
+                margin-bottom: 1.75rem;
+            }
+
+            .services-item-header {
+                gap: 0.75rem;
+                margin-bottom: 1rem;
+            }
+
+            .services-number-inline {
+                font-size: 1rem;
+                min-width: 30px;
+            }
+
+            .services-item-title {
+                font-size: 1rem;
+            }
+
+            .services-item-divider {
+                margin-bottom: 1rem;
+            }
+
+            .services-item-desc {
+                font-size: 0.8rem;
+            }
+
+            .services-main-title {
+                font-size: 0.85rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .services-benefits {
+                font-size: 2.25rem;
+                margin: 1.5rem 0 1.5rem 0;
+                word-spacing: 100vw;
+                line-height: 1.2;
+            }
+
+            .services-bottom-text {
+                font-size: 0.8rem;
+                line-height: 1.7;
+                margin-bottom: 1.5rem;
+            }
+
+            .beyond-section {
+                padding: 3rem 0.5rem;
+            }
+
+            .beyond-header {
+                gap: 2rem;
+                margin-bottom: 3rem;
+            }
+
+            .beyond-title {
+                font-size: 1.6rem;
+                margin-bottom: 1rem;
+            }
+
+            .beyond-description {
+                font-size: 0.9rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .btn-discover {
+                padding: 0.65rem 1.25rem;
+                font-size: 0.85rem;
+                grid-column: 1 / -1;
+                justify-self: start;
+            }
+
+            .beyond-cards {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+
+            .beyond-card {
+                height: 220px;
+            }
+
+            .beyond-card-title {
+                font-size: 1.05rem;
+            }
+
+            .blog-section {
+                padding: 3rem 0.5rem;
+            }
+
+            .blog-header {
+                flex-direction: column;
+                gap: 1.5rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .blog-title {
+                font-size: 1.6rem;
+                margin-bottom: 1rem;
+                line-height: 1.3;
+            }
+
+            .blog-description {
+                font-size: 0.9rem;
+            }
+
+            .blog-header-button {
+                width: 100%;
+            }
+
+            .btn-blog {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .blog-posts {
+                gap: 2rem;
+            }
+
+            .blog-post {
+                gap: 1.25rem;
+            }
+
+            .blog-post-image {
+                height: 180px;
+            }
+
+            .blog-post-content {
+                padding: 0;
+            }
+
+            .blog-post-date {
+                font-size: 0.8rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .blog-post-title {
+                font-size: 1.3rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .blog-post-desc {
+                font-size: 0.85rem;
+                margin-bottom: 1rem;
+            }
+
+            .cta-section {
+                padding: 3rem 0.5rem;
+            }
+
+            .cta-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .cta-title {
+                font-size: 1.75rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.3;
+            }
+
+            .btn-cta {
+                padding: 0.7rem 1.25rem;
+                font-size: 0.85rem;
+            }
+
+            footer {
+                padding: 2rem 0.5rem 0.75rem;
+            }
+
+            .footer-newsletter-section {
+                margin-bottom: 1.75rem;
+            }
+
+            .footer-newsletter-title {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+
+            .newsletter-input-group {
+                margin-bottom: 1.5rem;
+                gap: 0.4rem;
+            }
+
+            .newsletter-input {
+                font-size: 0.85rem;
+                padding: 0.6rem 0;
+            }
+
+            .footer-info-section {
+                gap: 1.25rem;
+                margin-bottom: 1.75rem;
+                padding-bottom: 1.75rem;
+            }
+
+            .footer-info-title {
+                font-size: 0.75rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .footer-info-text {
+                font-size: 0.8rem;
+                line-height: 1.7;
+            }
+
+            .footer-links-wrapper {
+                gap: 1.75rem;
+                margin-bottom: 1.75rem;
+                padding-bottom: 1.75rem;
+            }
+
+            .footer-link-group h3 {
+                font-size: 0.9rem;
+                margin-bottom: 0.85rem;
+            }
+
+            .footer-link-group a {
+                font-size: 0.8rem;
+            }
+
+            .footer-socials a {
+                font-size: 0.8rem;
+            }
+
+            .footer-bottom {
+                gap: 1.75rem;
+                padding-top: 1.5rem;
+            }
+
+            .footer-logo-wrapper {
+                gap: 1.25rem;
+            }
+
+            .footer-logo-bg {
+                width: 85px;
+                height: 85px;
+            }
+
+            .footer-logo {
+                font-size: 1.85rem;
+                letter-spacing: 1px;
+                margin-bottom: 0.3rem;
+            }
+
+            .footer-logo-text {
+                font-size: 0.8rem;
+            }
+
+            .footer-bottom-links {
+                flex-direction: column;
+                gap: 0.75rem;
+                padding-top: 1.25rem;
+            }
+
+            .footer-bottom-links a {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Responsive Design - Small Mobile (360px to 479px) */
+        @media (max-width: 479px) {
+            .navbar {
+                padding: 0.5rem 0.4rem;
+            }
+
+            .navbar-brand {
+                font-size: 1rem;
+                gap: 0.25rem;
+            }
+
+            .navbar-brand-icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            .navbar-nav {
+                gap: 0.4rem;
+            }
+
+            .nav-link {
+                font-size: 0.85rem;
+            }
+
+            .btn-contact {
+                font-size: 0.8rem;
+                padding: 0.6rem 1rem;
+            }
+
+            .hero {
+                padding: 3rem 0.4rem;
+                min-height: 80vh;
+                background-attachment: fixed;
+            }
+
+            .hero > .container-fluid {
+                height: 100%;
+            }
+
+            .hero-title {
+                font-size: 1.75rem;
+                margin-bottom: 0.8rem;
+                letter-spacing: -0.5px;
+                line-height: 1.2;
+            }
+
+            .hero-subtitle {
+                font-size: 0.8rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .hero-tagline {
+                font-size: 0.75rem;
+                line-height: 1.5;
+                margin-bottom: 1.5rem;
+                max-width: 100%;
+            }
+
+            .btn-primary-custom {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+                min-height: 40px;
+            }
+
+            .why-section,
+            .about-section,
+            .simplified-section,
+            .own-section,
+            .testimonials-section,
+            .services-section,
+            .beyond-section,
+            .blog-section,
+            .cta-section {
+                padding: 2.5rem 0.4rem;
+            }
+
+            .why-label {
+                font-size: 0.7rem;
+                margin-bottom: 1rem;
+                letter-spacing: 0.8px;
+            }
+
+            .why-title {
+                font-size: 1.5rem;
+                margin-bottom: 0.85rem;
+            }
+
+            .why-description {
+                font-size: 0.8rem;
+            }
+
+            .about-title {
+                font-size: 1.5rem;
+            }
+
+            .about-description {
+                padding: 1.25rem 0;
+                margin: 0 auto 1.25rem;
+                font-size: 0.9rem;
+            }
+
+            .about-description-bold {
+                font-size: 0.95rem;
+                margin-top: 1.5rem;
+            }
+
+            .simplified-title {
+                font-size: 1.5rem;
+            }
+
+            .simplified-subtitle {
+                font-size: 1rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .steps-label {
+                font-size: 0.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .steps-item {
+                gap: 0.85rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .steps-item::before {
+                font-size: 0.7rem;
+                min-width: 30px;
+            }
+
+            .steps-item-wrapper {
+                padding-bottom: 1.25rem;
+            }
+
+            .steps-item-title {
+                font-size: 0.9rem;
+            }
+
+            .steps-item-desc {
+                font-size: 0.75rem;
+            }
+
+            .own-title-centered {
+                font-size: 1.5rem;
+                margin-bottom: 1.1rem;
+            }
+
+            .own-left-section {
+                min-height: 250px;
+            }
+
+            .for-agents-title {
+                font-size: 0.8rem;
+                margin-bottom: 1.75rem;
+            }
+
+            .for-agents-image {
+                height: 180px;
+                margin-top: 3rem;
+            }
+
+            .own-main-image {
+                height: 200px;
+                margin-bottom: 1.75rem;
+            }
+
+            .own-text-bold {
+                font-size: 0.85rem;
+            }
+
+            .own-text-grey {
+                font-size: 0.8rem;
+            }
+
+            .testimonials-title {
+                font-size: 1.5rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .testimonials-image {
+                height: 220px;
+            }
+
+            .testimonials-content {
+                padding: 1.25rem 0.85rem;
+            }
+
+            .testimonials-top-line {
+                height: 1.5px;
+                margin-bottom: 1.5rem;
+            }
+
+            .testimonials-text {
+                font-size: 0.85rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .testimonials-quote {
+                font-size: 2rem;
+            }
+
+            .dot {
+                width: 30px;
+                height: 30px;
+                font-size: 0.7rem;
+            }
+
+            .testimonials-author {
+                font-size: 0.75rem;
+            }
+
+            .services-benefits {
+                font-size: 2rem;
+                margin: 1.25rem 0 1.25rem 0;
+            }
+
+            .services-main-title {
+                font-size: 0.8rem;
+            }
+
+            .services-item-title {
+                font-size: 0.95rem;
+            }
+
+            .services-item-desc {
+                font-size: 0.75rem;
+            }
+
+            .services-bottom-text {
+                font-size: 0.75rem;
+            }
+
+            .beyond-title {
+                font-size: 1.5rem;
+                margin-bottom: 0.85rem;
+            }
+
+            .beyond-description {
+                font-size: 0.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .btn-discover {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .beyond-card {
+                height: 200px;
+            }
+
+            .beyond-card-title {
+                font-size: 1rem;
+            }
+
+            .blog-title {
+                font-size: 1.5rem;
+                margin-bottom: 0.85rem;
+            }
+
+            .blog-description {
+                font-size: 0.8rem;
+            }
+
+            .btn-blog {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .blog-post {
+                gap: 1rem;
+            }
+
+            .blog-post-image {
+                height: 160px;
+            }
+
+            .blog-post-date {
+                font-size: 0.75rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .blog-post-title {
+                font-size: 1.2rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .blog-post-desc {
+                font-size: 0.8rem;
+                margin-bottom: 0.85rem;
+            }
+
+            .cta-subtitle {
+                font-size: 0.8rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .cta-title {
+                font-size: 1.5rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .btn-cta {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            footer {
+                padding: 1.75rem 0.4rem 0.6rem;
+            }
+
+            .footer-newsletter-section {
+                margin-bottom: 1.5rem;
+            }
+
+            .footer-newsletter-title {
+                font-size: 0.85rem;
+                margin-bottom: 0.85rem;
+            }
+
+            .newsletter-input {
+                font-size: 0.8rem;
+                padding: 0.5rem 0;
+            }
+
+            .footer-info-section {
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+
+            .footer-info-title {
+                font-size: 0.7rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .footer-info-text {
+                font-size: 0.75rem;
+            }
+
+            .footer-links-wrapper {
+                gap: 1.5rem;
+                margin-bottom: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+
+            .footer-link-group h3 {
+                font-size: 0.85rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .footer-link-group a {
+                font-size: 0.75rem;
+            }
+
+            .footer-socials a {
+                font-size: 0.75rem;
+            }
+
+            .footer-bottom {
+                gap: 1.5rem;
+                padding-top: 1.25rem;
+            }
+
+            .footer-logo-wrapper {
+                gap: 1rem;
+            }
+
+            .footer-logo-bg {
+                width: 80px;
+                height: 80px;
+            }
+
+            .footer-logo {
+                font-size: 1.5rem;
+                letter-spacing: 0.5px;
+                margin-bottom: 0.25rem;
+            }
+
+            .footer-logo-text {
+                font-size: 0.75rem;
+            }
+
+            .footer-bottom-links {
+                gap: 0.6rem;
+                padding-top: 1rem;
+            }
+
+            .footer-bottom-links a {
+                font-size: 0.65rem;
+            }
+
+            .footer-copyright {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Responsive Design - Extra Small Mobile (below 360px) */
+        @media (max-width: 359px) {
+            .navbar {
+                padding: 0.4rem 0.3rem;
+            }
+
+            .navbar-brand {
+                font-size: 0.95rem;
+            }
+
+            .navbar-brand-icon {
+                width: 26px;
+                height: 26px;
+            }
+
+            .hero {
+                padding: 2.5rem 0.3rem;
+                min-height: 75vh;
+                background-attachment: fixed;
+            }
+
+            .hero > .container-fluid {
+                height: 100%;
+            }
+
+            .hero-title {
+                font-size: 1.5rem;
+                margin-bottom: 0.7rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.75rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .hero-tagline {
+                font-size: 0.7rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .why-title,
+            .about-title,
+            .simplified-title,
+            .own-title-centered,
+            .testimonials-title,
+            .beyond-title,
+            .blog-title {
+                font-size: 1.35rem;
+            }
+
+            .services-benefits {
+                font-size: 1.75rem;
+            }
+
+            .cta-title {
+                font-size: 1.35rem;
+            }
+
+            .footer-logo {
+                font-size: 1.35rem;
+            }
+        }
+
+        /* Why Section */
+        .why-section {
+            padding: 6rem 0;
+            background-color: #fafafa;
+            overflow: hidden;
+        }
+
+        .why-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: flex-start;
+        }
+
+        .why-label {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #666;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: slideUpFade 0.8s ease-out 0.2s both;
+        }
+
+        .why-content {
+            animation: slideUpFade 0.8s ease-out 0.4s both;
+        }
+
+        .why-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.3;
+            color: #000;
+            margin-bottom: 1.5rem;
+        }
+
+        .why-title-bold {
+            font-weight: 800;
+        }
+
+        .why-title-regular {
+            font-weight: 400;
+        }
+
+        .why-description {
+            font-size: 1rem;
+            color: #aaa;
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .why-video-container {
+            margin-top: 4rem;
+            animation: slideUpFade 0.8s ease-out 0.6s both;
+        }
+
+        .why-video {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: #e5e5e5;
+        }
+
+        .why-video video {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 10rem 0;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .about-header {
+            margin-bottom: 3rem;
+        }
+
+        .about-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: #000;
+            margin-bottom: 0;
+        }
+
+        .about-title-bold {
+            font-weight: 800;
+            display: inline;
+        }
+
+        .about-title-light {
+            font-weight: 400;
+            color: #aaa;
+            font-size: 2.5rem;
+            line-height: 1.4;
+            display: inline;
+        }
+
+        .about-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+            margin: 0 auto 2rem;
+            padding: 2rem 0;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .about-description-bold {
+            font-weight: 700;
+            color: #000;
+            font-size: 1.05rem;
+            display: block;
+            margin-top: 2rem;
+            line-height: 1.6;
+            letter-spacing: 0.3px;
+        }
+
+        .about-image-container {
+            margin: 3rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-image {
+            max-width: 100%;
+            height: auto;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
+        }
+
+
+
+        /* Simplified Section */
+        .simplified-section {
+            padding: 8rem 0;
+            background-color: #fff;
+        }
+
+        .simplified-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .simplified-left {
+            padding-right: 2rem;
+        }
+
+        .simplified-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: #000;
+            margin-bottom: 1.5rem;
+        }
+
+        .simplified-title-bold {
+            font-weight: 800;
+            display: block;
+        }
+
+        .simplified-subtitle {
+            font-size: 1.75rem;
+            font-weight: 400;
+            color: #aaa;
+            margin-bottom: 3rem;
+            letter-spacing: -0.5px;
+        }
+
+        .btn-search {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 0.85rem 2rem;
+            font-weight: 600;
+            border-radius: 2rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-search:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+        }
+
+        .simplified-right {
+            padding-left: 0;
+        }
+
+        .steps-label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 3rem;
+            letter-spacing: 0.5px;
+        }
+
+        .steps-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .steps-item {
+            margin-bottom: 3.5rem;
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            counter-increment: step-counter;
+        }
+
+        .steps-item::before {
+            content: "0" counter(step-counter);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #d0d0d0;
+            letter-spacing: 1px;
+            min-width: 40px;
+            flex-shrink: 0;
+            padding-top: 0.2rem;
+        }
+
+        .steps-item-wrapper {
+            flex: 1;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e5e5e5;
+            opacity: 0.7;
+        }
+
+        .steps-item-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #000;
+            display: inline;
+            margin-right: 0.5rem;
+        }
+
+        .steps-item-desc {
+            font-size: 1.05rem;
+            color: #bbb;
+            line-height: 1.5;
+            display: inline;
+        }
+
+
+
+
+
+        /* Own Section */
+        .own-section {
+            padding: 6rem 0;
+            background-color: #fff;
+        }
+
+        .own-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: flex-start;
+        }
+
+        .own-left-section {
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 500px;
+        }
+
+        .for-agents-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 3rem;
+            letter-spacing: 0.5px;
+        }
+
+        .for-agents-image {
+            width: 100%;
+            height: 280px;
+            background-color: #ddd;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-top: 6rem;
+        }
+
+        .for-agents-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .own-right-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .own-title-centered {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: #000;
+            line-height: 1.2;
+        }
+
+        .own-title-light {
+            color: #aaa;
+            font-weight: 400;
+        }
+
+        .own-main-image {
+            width: 100%;
+            height: 320px;
+            background-color: #ddd;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .own-main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .own-text-content {
+            margin-bottom: 2rem;
+        }
+
+        .own-text-bold {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .own-text-grey {
+            font-size: 0.95rem;
+            color: #999;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .own-button-divider {
+            width: 100%;
+            height: 1px;
+            background-color: #e5e5e5;
+            margin: 2rem 0;
+        }
+
+        .btn-join-agareo {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 0.85rem 2rem;
+            font-weight: 600;
+            border-radius: 2rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .btn-join-agareo:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+        }
+
+        .btn-join {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.75rem;
+            font-weight: 600;
+            border-radius: 0.375rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-join:hover {
+            background-color: #333;
+        }
+
+        .btn-join::after {
+            content: '→';
+            font-size: 1rem;
+        }
+
+
+
+
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 8rem 0;
+            background-color: #f0f0f0;
+        }
+
+        .testimonials-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #000;
+        }
+
+        .testimonials-title-light {
+            color: #aaa;
+        }
+
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .testimonials-image {
+            width: 100%;
+            height: 400px;
+            background-color: #ddd;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .testimonials-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonials-content {
+            padding: 0 2rem;
+            background-color: #fff;
+            border-radius: 0.5rem;
+            padding: 3rem 2rem;
+        }
+
+        .testimonials-top-line {
+            width: 100%;
+            height: 2px;
+            background-color: #000;
+            margin-bottom: 2rem;
+        }
+
+        .testimonials-dots {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            align-items: center;
+        }
+
+        .dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #999;
+            background-color: transparent;
+        }
+
+        .dot.active {
+            background-color: #000;
+            border-color: #000;
+            color: #fff;
+        }
+
+        .testimonials-header {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonials-quote-wrapper {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .testimonials-quote {
+            font-size: 4rem;
+            color: #000;
+            line-height: 1;
+            margin: 0;
+        }
+
+        .testimonials-text {
+            font-size: 1.05rem;
+            color: #000;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .testimonials-footer {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-top: 1px solid #e5e5e5;
+            padding-top: 1.5rem;
+        }
+
+        .testimonials-author {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #000;
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .testimonials-separator {
+            color: #ccc;
+            font-size: 1.25rem;
+        }
+
+        .testimonials-rating {
+            color: #ffc107;
+            font-size: 0.95rem;
+            margin-left: 0.5rem;
+        }
+
+
+
+
+
+        /* Services Section */
+        .services-section {
+            padding: 8rem 0;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+
+        .services-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: stretch;
+        }
+
+        .services-left {
+            padding-right: 2rem;
+        }
+
+        .services-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #aaa;
+            margin-bottom: 3rem;
+            letter-spacing: 1px;
+        }
+
+        .services-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 3rem;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .services-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .services-item-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .services-number-inline {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #aaa;
+            min-width: 40px;
+        }
+
+        .services-item-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0;
+        }
+
+        .services-item-divider {
+            width: 100%;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.15);
+            margin-bottom: 1.5rem;
+        }
+
+        .services-item-desc {
+            font-size: 0.9rem;
+            color: #999;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .services-number {
+            display: none;
+        }
+
+        .services-item-content {
+            display: none;
+        }
+
+        .services-right {
+            padding-left: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .services-bottom-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-top: auto;
+        }
+
+        .services-bottom-text {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 0;
+            max-width: 500px;
+        }
+
+        .services-bottom-text-bold {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .services-bottom-text-grey {
+            font-weight: 400;
+            color: #666;
+        }
+
+        .btn-services {
+            background-color: transparent;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 0.75rem 1.75rem;
+            font-weight: 600;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-services:hover {
+            background-color: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
+        .services-main-title {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #aaa;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+            letter-spacing: 0.5px;
+        }
+
+        .services-main-title-bold {
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .services-benefits {
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.15;
+            color: #fff;
+            margin: 2.5rem 0 3rem 0;
+            word-spacing: 100vw;
+        }
+
+
+
+
+
+        /* Beyond Section */
+        .beyond-section {
+            padding: 8rem 0;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+
+        .beyond-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: flex-start;
+            margin-bottom: 4rem;
+        }
+
+        .beyond-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .beyond-description {
+            font-size: 1rem;
+            color: #aaa;
+            line-height: 1.8;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .btn-discover {
+            background-color: transparent;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 0.75rem 1.75rem;
+            font-weight: 600;
+            border-radius: 0.375rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            grid-column: 2;
+            grid-row: 2;
+            justify-self: start;
+            margin: 0;
+            width: fit-content;
+        }
+
+        .btn-discover:hover {
+            background-color: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
+        .beyond-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .beyond-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            height: 300px;
+            background-color: #2a2a2a;
+        }
+
+        .beyond-card-image {
+            width: 100%;
+            height: 100%;
+            background-color: #3a3a3a;
+            overflow: hidden;
+        }
+
+        .beyond-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .beyond-card:hover .beyond-card-image img {
+            transform: scale(1.05);
+        }
+
+        .beyond-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 2rem;
+            color: #fff;
+        }
+
+        .beyond-card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .beyond-card-link {
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .beyond-card-link:hover {
+            transform: translateX(5px);
+        }
+
+
+
+
+
+        /* Blog Section */
+        .blog-section {
+            padding: 8rem 0;
+            background-color: #fff;
+        }
+
+        .blog-header {
+            margin-bottom: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .blog-header-content {
+            max-width: 600px;
+        }
+
+        .blog-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: #000;
+        }
+
+        .blog-title-light {
+            color: #aaa;
+        }
+
+        .blog-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        .blog-header-button {
+            display: flex;
+            align-items: flex-end;
+            height: 100%;
+        }
+
+        .btn-blog {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.75rem;
+            font-weight: 600;
+            border-radius: 0.375rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .btn-blog:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .blog-posts {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .blog-post {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .blog-post:nth-child(even) {
+            direction: rtl;
+        }
+
+        .blog-post:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .blog-post-image {
+            width: 100%;
+            height: 250px;
+            background-color: #ddd;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .blog-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-post-content {
+            padding: 0 2rem;
+        }
+
+        .blog-post-date {
+            font-size: 0.85rem;
+            color: #999;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .blog-post-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .blog-post-desc {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-post-link {
+            color: #000;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .blog-post-link:hover {
+            transform: translateX(5px);
+        }
+
+
+
+
+
+        /* Footer Section */
+        .cta-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(50, 50, 50, 0.95) 100%),
+                        url('feature-uae.png') center / cover no-repeat;
+            background-attachment: fixed;
+            color: #fff;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-subtitle {
+            font-size: 1rem;
+            color: #aaa;
+            margin-bottom: 1rem;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+
+        .btn-cta {
+            background-color: #fff;
+            color: #000;
+            border: none;
+            padding: 0.85rem 2rem;
+            font-weight: 600;
+            border-radius: 2rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .btn-cta:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a0a0a;
+            color: #fff;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-newsletter-section {
+            margin-bottom: 4rem;
+            max-width: 450px;
+        }
+
+        .footer-newsletter-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .newsletter-input-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid #555;
+            color: #fff;
+            padding: 0.75rem 0;
+            font-size: 0.9rem;
+        }
+
+        .newsletter-input::placeholder {
+            color: #888;
+        }
+
+        .newsletter-submit {
+            background-color: transparent;
+            border: none;
+            color: #aaa;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .newsletter-submit:hover {
+            color: #fff;
+        }
+
+        .footer-info-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 4rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .footer-info-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-info-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .footer-info-text {
+            font-size: 0.85rem;
+            color: #aaa;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .footer-links-wrapper {
+            display: flex;
+            gap: 6rem;
+            margin-bottom: 4rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .footer-link-group h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            color: #fff;
+        }
+
+        .footer-link-group ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-link-group li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-link-group a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link-group a:hover {
+            color: #fff;
+        }
+
+        .footer-socials {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-socials a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-socials a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .footer-bottom-left {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .footer-logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .footer-logo-bg {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.15;
+            flex-shrink: 0;
+        }
+
+        .footer-logo-icon {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .footer-logo-text-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .footer-logo {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+
+        .footer-logo-text {
+            font-size: 1rem;
+            color: #aaa;
+            margin: 0;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            width: 100%;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+        }
+
+        .footer-bottom-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #fff;
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand" href="#">
+                <img src="Aqareo1.png" alt="AQAREO Icon" class="navbar-brand-icon">
+                <span class="navbar-brand-text">AQAREO</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#search">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#blog">Blog</a>
+                    </li>
+                </ul>
+                <div style="margin-left: auto;">
+                    <a class="btn-contact" href="#contact">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container-fluid px-4">
+            <div class="hero-content">
+                <h1 class="hero-title">Find Your Place In Your Area</h1>
+                <p class="hero-subtitle">Expert agents. Local insight.</p>
+                <p class="hero-tagline">A smarter path to your next property with confidence and clarity</p>
+                <a href="#properties" class="btn-primary-custom">Find Property</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Section -->
+    <section class="why-section" id="why">
+        <div class="container-fluid px-4">
+            <div class="why-container">
+                <div>
+                    <p class="why-label">Why Find</p>
+                </div>
+                <div class="why-content">
+                    <h2 class="why-title">
+                        <span class="why-title-bold">Your goals are evolving. Don't just find property—find your future.</span>
+                    </h2>
+                    <p class="why-description">We guide you through the UAE real estate market with clarity and confidence.</p>
+                </div>
+            </div>
+            <div class="why-video-container">
+                <div class="why-video">
+                    <video autoplay playsinline muted loop>
+                        <source src="aqareo realstate.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container-fluid px-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="about-header">
+                        <h2 class="about-title">
+                            <span class="about-title-bold">This isn't just</span>
+                            <span class="about-title-light"> about property.</span>
+                        </h2>
+                    </div>
+                    <div class="about-image-container">
+                        <img src="ss.png" alt="About AGAREO" class="about-image">
+                    </div>
+                    <div class="about-content">
+                        <p class="about-description-bold">
+                            It's about ambition. Lifestyle. Building something that lasts. You're looking for the right fit.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simplified Section -->
+    <section class="simplified-section" id="simplified">
+        <div class="container-fluid px-4">
+            <div class="simplified-container">
+                <div class="simplified-left">
+                    <h2 class="simplified-title">
+                        <span class="simplified-title-bold">UAE Real Estate,</span>
+                    </h2>
+                    <p class="simplified-subtitle">Simplified</p>
+                    <button class="btn-search">Start Your Search <span>→</span></button>
+                </div>
+                <div class="simplified-right">
+                    <p class="steps-label">Steps:</p>
+                    <ul class="steps-list">
+                        <li class="steps-item">
+                            <div class="steps-item-wrapper">
+                                <span class="steps-item-title">Talk to a Real Expert</span><span class="steps-item-desc">We connect you with a UAE-certified agent who truly listens</span>
+                            </div>
+                        </li>
+                        <li class="steps-item">
+                            <div class="steps-item-wrapper">
+                                <span class="steps-item-title">Get Clarity</span><span class="steps-item-desc">We define what you actually need, not just what's available in the market.</span>
+                            </div>
+                        </li>
+                        <li class="steps-item">
+                            <div class="steps-item-wrapper">
+                                <span class="steps-item-title">Move Forward</span><span class="steps-item-desc">We find the property that fits and make the deal happen.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Own Section -->
+    <section class="own-section" id="own">
+        <div class="container-fluid px-4">
+            <div class="own-wrapper">
+                <!-- Left Section: For Agents -->
+                <div class="own-left-section">
+                    <h3 class="for-agents-title">For Agents</h3>
+                    <div class="for-agents-image">
+                        <img src="service-property-management.png" alt="For Agents">
+                    </div>
+                </div>
+
+                <!-- Right Section: Own UAE Real Estate -->
+                <div class="own-right-section">
+                    <h2 class="own-title-centered">
+                        Own <span class="own-title-light">UAE Real Estate</span>
+                    </h2>
+                    <div class="own-main-image">
+                        <img src="Buildng.png" alt="Building">
+                    </div>
+                    <div class="own-text-content">
+                        <p class="own-text-bold">At Agareo, our agents don't just represent the brand</p>
+                        <p class="own-text-grey">they grow with it. We equip top performers with the tools, leads, and support to build a thriving career across Dubai, Abu Dhabi, Sharjah, and beyond. You're not just closing deals, you're building a legacy in one of the world's most dynamic property markets.</p>
+                    </div>
+                    <div class="own-button-divider"></div>
+                    <button class="btn-join-agareo">Join Agareo <span>→</span></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="container-fluid px-4">
+            <h2 class="testimonials-title">
+                Don't Take 
+                <span class="testimonials-title-light">Our Word for It.</span>
+            </h2>
+            <div class="testimonials-container">
+                <div class="testimonials-image">
+                    <img src="Gallery.png" alt="Testimonial Image">
+                </div>
+                <div class="testimonials-content">
+                    <div class="testimonials-top-line"></div>
+                    <div class="testimonials-dots">
+                        <div class="dot active">1</div>
+                        <div class="dot">2</div>
+                        <div class="dot">3</div>
+                        <div class="dot">4</div>
+                        <div class="dot">5</div>
+                    </div>
+                    <div class="testimonials-header">
+                        <div class="testimonials-quote-wrapper">
+                            <div class="testimonials-quote">"</div>
+                        </div>
+                    </div>
+                    <p class="testimonials-text">
+                        Michael was a great realtor. Such a hard worker, dedicated to helping us find the perfect neighborhood, price point and home. He's a workaholic so he was available morning, noon and night. Tireless and dedicated. Would recommend him 100%!
+                    </p>
+                    <div class="testimonials-footer">
+                        <p class="testimonials-author">BERNADETTE HOGAN</p>
+                        <span class="testimonials-separator">/</span>
+                        <div class="testimonials-rating">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="container-fluid px-4">
+            <div class="services-container">
+                <div class="services-left">
+                    <p class="services-label">Services</p>
+                    
+                    <div class="services-item">
+                        <div class="services-item-header">
+                            <span class="services-number-inline">1</span>
+                            <h3 class="services-item-title">Buy</h3>
+                        </div>
+                        <div class="services-item-divider"></div>
+                        <p class="services-item-desc">In tandem with expert backed by UAE market expertise legal guidance and mortgage specialists joined to advise the best buy options in the Emirates</p>
+                    </div>
+
+                    <div class="services-item">
+                        <div class="services-item-header">
+                            <span class="services-number-inline">2</span>
+                            <h3 class="services-item-title">Sell</h3>
+                        </div>
+                        <div class="services-item-divider"></div>
+                        <p class="services-item-desc">Set foot off at the right price Your listing gets prominence on our portal and agents who don't snap until the right buyer signs</p>
+                    </div>
+
+                    <div class="services-item">
+                        <div class="services-item-header">
+                            <span class="services-number-inline">3</span>
+                            <h3 class="services-item-title">Rent</h3>
+                        </div>
+                        <div class="services-item-divider"></div>
+                        <p class="services-item-desc">Access exclusive rental listings carefully curated from short-term holiday homes to long-term leases across Dubai Abu Dhabi and Sharjah Our agents know the markets, the laws</p>
+                    </div>
+                </div>
+
+                <div class="services-right">
+                    <p class="services-main-title">
+                        How <span class="services-main-title-bold">Agareo</span>
+                    </p>
+                    <p class="services-main-title">Can Help You</p>
+                    
+                    <div class="services-benefits">
+                        Buy<br>
+                        Sell<br>
+                        Rent
+                    </div>
+
+                    <div class="services-bottom-section">
+                        <p class="services-bottom-text">
+                            <span class="services-bottom-text-bold">Our certified agents guide you through every </span><span class="services-bottom-text-grey">stage of UAE property with expert knowledge and reliable local support</span>
+                        </p>
+                        <button class="btn-services">Get Started with Agareo <span>→</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beyond Section -->
+    <section class="beyond-section" id="beyond">
+        <div class="container-fluid px-4">
+            <div class="beyond-header">
+                <h2 class="beyond-title">Beyond Buying and Selling</h2>
+                <p class="beyond-description">
+                    The UAE property market moves fast and so do we. Our experts offer continued support beyond the transaction, helping you protect and grow your investment in one of the world's most exciting real estate markets.
+                </p>
+                <button class="btn-discover">Discover More Services <span>→</span></button>
+            </div>
+
+            <div class="beyond-cards">
+                <div class="beyond-card">
+                    <div class="beyond-card-image">
+                        <img src="M&HF.png" alt="Mortgage & Home Finance">
+                    </div>
+                    <div class="beyond-card-content">
+                        <h3 class="beyond-card-title">Mortgage & Home Finance</h3>
+                        <a href="#" class="beyond-card-link">Learn More <span>→</span></a>
+                    </div>
+                </div>
+
+                <div class="beyond-card">
+                    <div class="beyond-card-image">
+                        <img src="PM.png" alt="Property Management">
+                    </div>
+                    <div class="beyond-card-content">
+                        <h3 class="beyond-card-title">Property Management</h3>
+                        <a href="#" class="beyond-card-link">Learn More <span>→</span></a>
+                    </div>
+                </div>
+
+                <div class="beyond-card">
+                    <div class="beyond-card-image">
+                        <img src="O&DA.png" alt="Off-Plan & Development Advisory">
+                    </div>
+                    <div class="beyond-card-content">
+                        <h3 class="beyond-card-title">Off-Plan & Development Advisory</h3>
+                        <a href="#" class="beyond-card-link">Learn More <span>→</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section" id="blog">
+        <div class="container-fluid px-4">
+            <div class="blog-header">
+                <div class="blog-header-content">
+                    <h2 class="blog-title">
+                        Blog & 
+                        <span class="blog-title-light">Resources</span>
+                    </h2>
+                    <p class="blog-description">
+                        See how we've helped clients achieve their real estate dreams, one successful move at a time.
+                    </p>
+                </div>
+                <div class="blog-header-button">
+                    <a href="#" class="btn-blog">Visit Our Blog <span>→</span></a>
+                </div>
+            </div>
+
+            <div class="blog-posts">
+                <article class="blog-post">
+                    <div class="blog-post-image">
+                        <img src="&R.png" alt="Insights & Resources">
+                    </div>
+                    <div class="blog-post-content">
+                        <p class="blog-post-date">2025-02-23</p>
+                        <h3 class="blog-post-title">Insights & Resources</h3>
+                        <p class="blog-post-desc">
+                            One aspect of the full property market with expert insights and viewpoints Our blogs and resources feature ideas about properties Dubai Abu Dhabi and beyond
+                        </p>
+                        <a href="#" class="blog-post-link">Read More <span>→</span></a>
+                    </div>
+                </article>
+
+                <article class="blog-post">
+                    <div class="blog-post-image">
+                        <img src="Market.png" alt="January 2026 UAE Market Update">
+                    </div>
+                    <div class="blog-post-content">
+                        <p class="blog-post-date">2025-01-02</p>
+                        <h3 class="blog-post-title">January 2026 UAE Market Update</h3>
+                        <p class="blog-post-desc">
+                            Investing is booming in the US real estate market See the Government Capital Markets and Business Sectors The months are showing up
+                        </p>
+                        <a href="#" class="blog-post-link">Read More <span>→</span></a>
+                    </div>
+                </article>
+
+                <article class="blog-post">
+                    <div class="blog-post-image">
+                        <img src="D.png" alt="The Dubai's Key">
+                    </div>
+                    <div class="blog-post-content">
+                        <p class="blog-post-date">2025-01-05</p>
+                        <h3 class="blog-post-title">The Dubai's Key: Why January is a Smart Time to Buy</h3>
+                        <p class="blog-post-desc">
+                            Why January I the new time to buy is Dubai Is it The government wants people to invest and they are giving back incentives rebates and
+                        </p>
+                        <a href="#" class="blog-post-link">Read More <span>→</span></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container-fluid px-4">
+            <div class="cta-content">
+                <p class="cta-subtitle">Find Your Place.</p>
+                <h2 class="cta-title">We'll Help You Get There.</h2>
+                <button class="btn-cta">Let's Get Started <span>→</span></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container-fluid px-4">
+            <!-- Newsletter Section -->
+            <div class="footer-newsletter-section">
+                <p class="footer-newsletter-title">Subscribe to our Newsletter!</p>
+                <div class="newsletter-input-group">
+                    <input type="email" class="newsletter-input" placeholder="Enter address">
+                    <button class="newsletter-submit">→</button>
+                </div>
+            </div>
+
+            <!-- Contact Info Section -->
+            <div class="footer-info-section">
+                <div class="footer-info-block">
+                    <h4 class="footer-info-title">Head Office</h4>
+                    <p class="footer-info-text">802 BB Building, Al Baraha 1</p>
+                    <p class="footer-info-text">Dubai, UAE</p>
+                </div>
+                <div class="footer-info-block">
+                    <h4 class="footer-info-title">Email</h4>
+                    <p class="footer-info-text">hello@realestate.com</p>
+                </div>
+                <div class="footer-info-block">
+                    <h4 class="footer-info-title">Call Us</h4>
+                    <p class="footer-info-text">+1212-994-9885</p>
+                </div>
+            </div>
+
+            <!-- Links and Follow Section -->
+            <div class="footer-links-wrapper">
+                <div class="footer-link-group">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#search">Search</a></li>
+                        <li><a href="#agents">Agents</a></li>
+                        <li><a href="#simplified">Join</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#">Agent Portal</a></li>
+                    </ul>
+                </div>
+                <div class="footer-link-group">
+                    <h3>Follow</h3>
+                    <div class="footer-socials">
+                        <a href="#">Facebook</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">YouTube</a>
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Section -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <div class="footer-logo-wrapper">
+                        <div class="footer-logo-bg">
+                            <img src="Aqareo.png" alt="Logo Background" class="footer-logo-icon">
+                        </div>
+                        <div class="footer-logo-text-wrapper">
+                            <div class="footer-logo">AQAREO</div>
+                            <p class="footer-logo-text">Redefining Real Estate in UAE</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom-links">
+                    <a href="#">Terms</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Fair Housing Policy</a>
+                    <a href="#">Operating Procedures</a>
+                    <a href="#">Data</a>
+                    <a href="#">Healthy Workplace Resources</a>
+                    <a href="#">CCPA</a>
+                    <a href="#">Site Map</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Mobile</a>
+                    <a href="#">Real Estate</a>
+                    <a href="#">Copyright © 2026</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const navbar = document.querySelector('.navbar');
+        let lastScrollPosition = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollPosition = window.scrollY;
+
+            if (currentScrollPosition > lastScrollPosition && currentScrollPosition > 50) {
+                // Scrolling down
+                navbar.classList.add('hidden');
+            } else {
+                // Scrolling up or at top
+                navbar.classList.remove('hidden');
+            }
+
+            lastScrollPosition = currentScrollPosition;
+        });
+    </script>
+
+</body>
+</html>

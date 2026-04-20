@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^powershell -Command \"Get-Item 'd:\\\\Courses\\\\CV\\\\new\\\\index\\.html' \\| Select-Object Length, LastWriteTime; \\(Get-Content 'd:\\\\Courses\\\\CV\\\\new\\\\index\\.html' \\| Measure-Object -Line\\)\\.Lines\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
